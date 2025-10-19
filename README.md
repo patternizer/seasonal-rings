@@ -1,5 +1,17 @@
 # seasonal-rings
 
+[![CI](https://github.com/patternizer/seasonal-rings/actions/workflows/ci.yml/badge.svg)](https://github.com/patternizer/seasonal-rings/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/patternizer/seasonal-rings/actions/workflows/codeql.yml/badge.svg)](https://github.com/patternizer/seasonal-rings/actions/workflows/codeql.yml)
+[![codecov](https://codecov.io/gh/patternizer/seasonal-rings/branch/main/graph/badge.svg)](https://codecov.io/gh/patternizer/seasonal-rings)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/patternizer/seasonal-rings/main.svg)](https://results.pre-commit.ci/latest/github/patternizer/seasonal-rings/main)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![lint: ruff](https://img.shields.io/badge/lint-ruff-46a3e6.svg)](https://github.com/astral-sh/ruff)
+[![type checking: mypy](https://img.shields.io/badge/type_checking-mypy-2A6DB2.svg)](https://mypy-lang.org/)
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)
+[![Docs](https://img.shields.io/badge/docs-User%20Manual-informational.svg)](docs/User-Manual.md)
+[![License](https://img.shields.io/github/license/patternizer/seasonal-rings.svg)](LICENSE.md)
+![Last commit](https://img.shields.io/github/last-commit/patternizer/seasonal-rings.svg)
+
 ![image](https://github.com/patternizer/seasonal-rings/blob/main/images/seasonal_ring_chart_anomaly_1970-2025.png)
 
 Concentric seasonal rings for monthly data. Each ring is a year (inner = most recent), and each ring has 12 wedges (Dec at 12 o’clock, Jan at 1 o’clock, …, Nov at 11 o’clock). Designed for anomalies **and** absolute values (e.g., CO₂), with smart color scaling, publication-ready output, and a friendly CLI.
@@ -10,8 +22,8 @@ Concentric seasonal rings for monthly data. Each ring is a year (inner = most re
 
 ## ✨ Features
 
-- **Rings by year**: inner = latest, outer = earliest.  
-- **Clockwise month layout**: **Dec at 12 o’clock** (top), then Jan ≈ 1 o’clock, …, Nov ≈ 11 o’clock.  
+- **Rings by year**: inner = latest, outer = earliest.
+- **Clockwise month layout**: **Dec at 12 o’clock** (top), then Jan ≈ 1 o’clock, …, Nov ≈ 11 o’clock.
 - **Smart color scaling**:
   - *Smart symmetric* (default): auto-detects if data crosses 0; uses symmetric scale for anomalies, non-symmetric otherwise.
   - Optional robust min/max via quantiles (`--quantiles`).
@@ -81,8 +93,8 @@ python seasonal_rings.py   --data examples/co2_mm_mlo.csv   --value-col average 
 
 **Data expectations**
 
-- CSV with **year**, **month**, and a numeric **value** column.  
-- Month can be **1–12** or strings (`Jan`, `January`). Use `--month-format` if needed.  
+- CSV with **year**, **month**, and a numeric **value** column.
+- Month can be **1–12** or strings (`Jan`, `January`). Use `--month-format` if needed.
 - Missing months are drawn in a neutral grey.
 
 **Month layout**
@@ -95,8 +107,8 @@ python seasonal_rings.py   --data examples/co2_mm_mlo.csv   --value-col average 
 
 ## 🖼 Output
 
-- Always saves a PNG (default name: `seasonal_ring_chart_<value>_<firstYear>-<lastYear>.png`).  
-- Use `--save out.png` to set the filename.  
+- Always saves a PNG (default name: `seasonal_ring_chart_<value>_<firstYear>-<lastYear>.png`).
+- Use `--save out.png` to set the filename.
 - Default `--dpi 600` (publication quality).
 
 ---
@@ -120,8 +132,8 @@ python seasonal_rings.py   --data examples/co2_mm_mlo.csv   --value-col average 
 
 ## 🧪 Development notes
 
-- Headless backend (**Agg**); no windows pop up.  
-- Z-order is set so data wedges are bottom; labels/axis are on top.  
+- Headless backend (**Agg**); no windows pop up.
+- Z-order is set so data wedges are bottom; labels/axis are on top.
 - Performance is O(12 × number-of-years) and scales well.
 
 ---

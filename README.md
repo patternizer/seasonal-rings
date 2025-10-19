@@ -1,10 +1,10 @@
-![image](https://github.com/patternizer/seasonal-rings/blob/main/images/seasonal_ring_chart_anomaly_1970-2025.png)
+# seasonal-rings
 
-# seasonal-rings — Radial Climatological Rings Chart (Python)
+![image](https://github.com/patternizer/seasonal-rings/blob/main/images/seasonal_ring_chart_anomaly_1970-2025.png)
 
 Concentric seasonal rings for monthly data. Each ring is a year (inner = most recent), and each ring has 12 wedges (Dec at 12 o’clock, Jan at 1 o’clock, …, Nov at 11 o’clock). Designed for anomalies **and** absolute values (e.g., CO₂), with smart color scaling, publication-ready output, and a friendly CLI.
 
-- 📄 **User Manual:** see [`docs/User-Manual.md`](docs/User-Manual.md)
+- 📄 **User Manual:** see [`docs/user-manual.md`](docs/user-manual.md)
 
 ---
 

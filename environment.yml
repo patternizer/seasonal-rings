@@ -1,9 +1,9 @@
-name: seasonal-ring-chart
+name: seasonal-rings
 channels:
   - conda-forge
-  - defaults
 dependencies:
-  - python=3.12.3
+  - python >=3.9
   - numpy
   - pandas
   - matplotlib
+

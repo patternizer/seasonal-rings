@@ -1,0 +1,22 @@
+[project]
+name = "seasonal-rings"
+version = "0.1.0"
+description = "Radial climatological rings chart for monthly data"
+readme = "README.md"
+license = { file = "LICENSE.md" }
+requires-python = ">=3.9"
+authors = [{ name = "Michael Taylor" }]
+dependencies = ["numpy", "pandas", "matplotlib"]
+
+[project.scripts]
+seasonal-rings = "seasonal_rings:main"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 100
+
+[tool.ruff]
+line-length = 100

@@ -136,7 +136,7 @@ Issues and PRs are welcome. When filing an issue, please include:
 
  Contact information:
 
-* [Michael Taylor](michael.taylor@cefas.gov.uk)
+* [Michael Taylor](https://patternizer.github.io/)
 
 ---
 

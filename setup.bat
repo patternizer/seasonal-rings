@@ -1,36 +1,33 @@
 @echo off
-call conda info >nul 2>&1 || (echo Conda not found in PATH & exit /b 1)
+setlocal ENABLEDELAYEDEXPANSION
 
-REM Create env from YAML
-conda env list | findstr /R "^quantum-poetry " >nul
-IF %ERRORLEVEL% NEQ 0 (
-  echo Updating existing env "quantum-poetry"...
-  conda env update -f environment.yml --prune
-) ELSE (
-  echo Creating env "quantum-poetry"...
-  conda env create -f environment.yml
+set ENV_NAME=seasonal-rings
+
+where conda >NUL 2>&1
+if %ERRORLEVEL%==0 (
+  echo [setup] Using Conda environment "%ENV_NAME%" from environment.yml
+  conda env update -n %ENV_NAME% -f environment.yml || conda env create -n %ENV_NAME% -f environment.yml
+  echo.
+  echo [setup] Done. Activate with:
+  echo   conda activate %ENV_NAME%
+  goto :eof
 )
 
-call conda activate quantum-poetry
-
-python -V
-python -c "import numpy, pandas, scipy, networkx, matplotlib, plotly, skimage, PIL; print('Deps OK')"
-
-python - <<PY
-import numpy, pandas, scipy, networkx, matplotlib, plotly, skimage, PIL, flask, dash
-print("Dependencies imported successfully.")
-PY
-
-
-IF EXIST poem-v1.txt (
-  echo Running quantum_poetry.py ...
-  python quantum_poetry.py
-) ELSE (
-  echo NOTE: Put poem-v1.txt in this folder (or change input_file in the script), then run:
-  echo conda activate quantum-poetry && python quantum_poetry.py
+where mamba >NUL 2>&1
+if %ERRORLEVEL%==0 (
+  echo [setup] Using Mamba environment "%ENV_NAME%" from environment.yml
+  mamba env update -n %ENV_NAME% -f environment.yml || mamba env create -n %ENV_NAME% -f environment.yml
+  echo.
+  echo [setup] Done. Activate with:
+  echo   conda activate %ENV_NAME%
+  goto :eof
 )
 
-echo Env ready. Run with: conda activate quantum-poetry && python <your_script>.py
-echo NOTE: Place your poem file at ./poem-v1.txt (or update input_file in the script) then run
-
-
+echo [setup] Conda/Mamba not found. Falling back to a local virtualenv: .venv
+py -m venv .venv
+call .\.venv\Scripts\activate
+py -m pip install --upgrade pip
+py -m pip install numpy pandas matplotlib
+echo.
+echo [setup] Done. Activate with:
+echo   .\.venv\Scripts\activate
